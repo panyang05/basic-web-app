@@ -31,5 +31,13 @@ export default function QueryProcessor(query: string): string {
     return "No numbers found in the query.";
   }
 
+  if (query.toLowerCase().includes("multiplied by")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return numbers.reduce((acc, curr) => acc * parseInt(curr), 1).toString();
+    }
+    return "No numbers found in the query.";
+  }
+
   return "";
 }
