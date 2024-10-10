@@ -39,13 +39,31 @@ export default function QueryProcessor(query: string): string {
     return "No numbers found in the query.";
   }
 
-  if (query.toLocaleLowerCase().includes("both a square and a cube")) {
+  if (query.toLowerCase().includes("both a square and a cube")) {
     const numbers = query.match(/\d+/g);
     if (numbers) {
       return numbers.filter(num => {
         const sqrt = Math.sqrt(parseInt(num));
         const cbrt = Math.cbrt(parseInt(num));
         return sqrt === Math.floor(sqrt) && cbrt === Math.floor(cbrt);
+      }).join(", ");
+    }
+    return "No numbers found in the query.";
+  }
+
+  if (query.toLowerCase().includes("prime")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return numbers.filter(num => {
+        if (parseInt(num) < 2) {
+          return false;
+        }
+        for (let i = 2; i <= Math.sqrt(parseInt(num)); i++) {
+          if (parseInt(num) % i === 0) {
+            return false;
+          }
+        }
+        return true;
       }).join(", ");
     }
     return "No numbers found in the query.";
