@@ -77,5 +77,13 @@ export default function QueryProcessor(query: string): string {
     return "No numbers found in the query.";
   }
 
+  if (query.toLowerCase().includes("the power of")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers && numbers.length === 2) {
+      return Math.pow(parseInt(numbers[0]), parseInt(numbers[1])).toString();
+    }
+    return "No numbers found in the query.";
+  }
+
   return "";
 }
