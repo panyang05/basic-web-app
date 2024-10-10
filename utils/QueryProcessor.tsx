@@ -22,5 +22,14 @@ export default function QueryProcessor(query: string): string {
     }
     return "No numbers found in the query.";
   }
+
+  if (query.toLowerCase().includes("plus")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return numbers.reduce((acc, curr) => acc + parseInt(curr), 0).toString();
+    }
+    return "No numbers found in the query.";
+  }
+
   return "";
 }
