@@ -39,5 +39,17 @@ export default function QueryProcessor(query: string): string {
     return "No numbers found in the query.";
   }
 
+  if (query.toLocaleLowerCase().includes("both a square and a cube")) {
+    const numbers = query.match(/\d+/g);
+    if (numbers) {
+      return numbers.filter(num => {
+        const sqrt = Math.sqrt(parseInt(num));
+        const cbrt = Math.cbrt(parseInt(num));
+        return sqrt === Math.floor(sqrt) && cbrt === Math.floor(cbrt);
+      }).join(", ");
+    }
+    return "No numbers found in the query.";
+  }
+
   return "";
 }
