@@ -72,7 +72,9 @@ export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("minus")) {
     const numbers = query.match(/\d+/g);
     if (numbers) {
-      return numbers.reduce((acc, curr) => acc - parseInt(curr), 0).toString();
+      const number1 = parseInt(numbers[0]);
+      const number2 = parseInt(numbers[1]);
+      return (number1 - number2).toString();
     }
     return "No numbers found in the query.";
   }
