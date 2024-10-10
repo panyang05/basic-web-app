@@ -15,7 +15,7 @@ export default function QueryProcessor(query: string): string {
     return ("yang");
   }
 
-  if (query.toLocaleLowerCase().includes("Which of the following numbers is the largest")) {
+  if (query.toLocaleLowerCase().includes("largest")) {
     const numbers = query.match(/\d+/g);
     if (numbers) {
       return Math.max(...numbers.map(Number)).toString();
